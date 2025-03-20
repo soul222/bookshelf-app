@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf App</title>
+    <!-- Impor script kamu di sini -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="assets/img/logo.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Product+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
+    <script defer src="main.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="navbar-container">
+        <div class="navbar-left">
+          <div class="logo-container">
+            <img src="assets/img/logo.png" alt="Bookshelf Logo" />
+            <h1>Bookshelf</h1>
+          </div>
+          <div class="navbar-search">
+            <div class="search-wrapper">
+              <i class="bi bi-search"></i>
+              <input type="text" id="quickSearch" placeholder="Telusuri" />
+              <i class="bi bi-x search-clear"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-actions">
+          <div class="navbar-icon" id="openAddBookModal" title="Tambah Buku">
+            <i class="bi bi-plus-circle"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Modal for adding book -->
+    <div id="addBookModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Tambah Buku Baru</h2>
+        <form id="bookForm" data-testid="bookForm">
+          <div>
+            <label for="bookFormTitle">Judul</label>
+            <input
+              id="bookFormTitle"
+              type="text"
+              required
+              data-testid="bookFormTitleInput"
+              placeholder="Masukkan judul buku"
+            />
+          </div>
+          <div>
+            <label for="bookFormAuthor">Penulis</label>
+            <input
+              id="bookFormAuthor"
+              type="text"
+              required
+              data-testid="bookFormAuthorInput"
+              placeholder="Masukkan penulis buku"
+            />
+          </div>
+          <div>
+            <label for="bookFormYear">Tahun</label>
+            <input
+              id="bookFormYear"
+              type="number"
+              required
+              data-testid="bookFormYearInput"
+              placeholder="Masukkan tahun buku (YYYY)"
+            />
+          </div>
+          <div>
+            <label for="bookFormIsComplete">Selesai dibaca</label>
+            <input
+              id="bookFormIsComplete"
+              type="checkbox"
+              data-testid="bookFormIsCompleteCheckbox"
+            />
+          </div>
+          <button
+            id="bookFormSubmit"
+            type="submit"
+            data-testid="bookFormSubmitButton"
+          >
+            <!-- Masukkan Buku ke rak <span>Belum selesai dibaca</span> -->
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- modal delete buku -->
+    <div id="deleteBookModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Konfirmasi Hapus Buku</h2>
+        <p>
+          Apakah Anda yakin ingin menghapus buku "<span
+            id="bookTitleToDelete"
+          ></span
+          >"?
+        </p>
+        <div class="modal-actions">
+          <button id="confirmDelete">Ya, Hapus</button>
+          <button id="cancelDelete">Batal</button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section>
+        <h2>Cari Buku</h2>
+        <form id="searchBook" data-testid="searchBookForm">
+          <label for="searchBookTitle">Judul</label>
+          <input
+            id="searchBookTitle"
+            type="text"
+            data-testid="searchBookFormTitleInput"
+            placeholder="Telusuri koleksi bukumu ..."
+          />
+          <button
+            id="searchSubmit"
+            type="submit"
+            data-testid="searchBookFormSubmitButton"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Belum selesai dibaca</h2>
+
+        <div id="incompleteBookList" data-testid="incompleteBookList">
+          <!-- Book items will be rendered here -->
+        </div>
+      </section>
+
+      <section>
+        <h2>Selesai dibaca</h2>
+
+        <div id="completeBookList" data-testid="completeBookList">
+          <!-- Book items will be rendered here -->
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
